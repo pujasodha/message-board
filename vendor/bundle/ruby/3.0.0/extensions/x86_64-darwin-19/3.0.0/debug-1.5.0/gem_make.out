@@ -1,0 +1,19 @@
+current directory: /Users/pujasodha/Desktop/HOME/CODE/apps/message-board/message-board/vendor/bundle/ruby/3.0.0/gems/debug-1.5.0/ext/debug
+/Users/pujasodha/.rvm/rubies/ruby-3.0.2/bin/ruby -I /Users/pujasodha/.rvm/rubies/ruby-3.0.2/lib/ruby/site_ruby/3.0.0 -r ./siteconf20220413-62418-lhy385.rb extconf.rb
+checking for rb_iseq_parameters(NULL, 0) in VALUE rb_iseq_parameters(void *, int is_proc);... yes
+checking for rb_iseq_code_location(NULL, NULL, NULL, NULL, NULL) in void rb_iseq_code_location(void *, int *first_lineno, int *first_column, int *last_lineno, int *last_column);... yes
+checking for rb_iseq_type(NULL) in VALUE rb_iseq_type(void *);... no
+creating Makefile
+
+current directory: /Users/pujasodha/Desktop/HOME/CODE/apps/message-board/message-board/vendor/bundle/ruby/3.0.0/gems/debug-1.5.0/ext/debug
+make DESTDIR\= clean
+
+current directory: /Users/pujasodha/Desktop/HOME/CODE/apps/message-board/message-board/vendor/bundle/ruby/3.0.0/gems/debug-1.5.0/ext/debug
+make DESTDIR\=
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.bundle
+
+current directory: /Users/pujasodha/Desktop/HOME/CODE/apps/message-board/message-board/vendor/bundle/ruby/3.0.0/gems/debug-1.5.0/ext/debug
+make DESTDIR\= install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 debug.bundle ./.gem.20220413-62418-7clh8x/debug

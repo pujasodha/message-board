@@ -1,1 +1,1 @@
-# messaging-board
+# message-board
