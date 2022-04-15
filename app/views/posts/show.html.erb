@@ -1,4 +1,19 @@
 <h1><%= @post.title %></h1>
-<h2>UNICORN</h2>
+<h3><%= @post.user.name %></h3>
 <p><%= @post.message %></p>
 <%= link_to 'Back', posts_path %>
+<%= link_to 'Edit', edit_post_path %>
+<%= button_to "Delete", @post, method: :delete %>
+<br>
+<br>
+<div class="container">
+  <%= render 'comments/form', 
+    post: @post, 
+    comment: @post&.comments.new,
+    submit_label: "Comment" %>
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', 
+    post: @post, 
+    comment: comment %>
+  <% end %>
+</div>

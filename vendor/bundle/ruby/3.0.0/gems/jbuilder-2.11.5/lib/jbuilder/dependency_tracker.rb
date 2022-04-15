@@ -29,7 +29,7 @@ if dependency_tracker
 
       # Matches:
       #   json.partial! partial: "comments/comment"
-      #   json.comments @post.comments, partial: "comments/comment", as: :comment
+      #   json.comments @post&.comments, partial: "comments/comment", as: :comment
       #   json.array! @posts, partial: "posts/post", as: :post
       #   = render partial: "account"
       #

@@ -33,7 +33,7 @@ class Jbuilder
   def set!(key, value = BLANK, *args, &block)
     result = if ::Kernel.block_given?
       if !_blank?(value)
-        # json.comments @post.comments { |comment| ... }
+        # json.comments @post&.comments { |comment| ... }
         # { "comments": [ { ... }, { ... } ] }
         _scope{ array! value, &block }
       else
@@ -53,7 +53,7 @@ class Jbuilder
         _format_keys(value)
       end
     elsif _is_collection?(value)
-      # json.comments @post.comments, :content, :created_at
+      # json.comments @post&.comments, :content, :created_at
       # { "comments": [ { "content": "hello", "created_at": "..." }, { "content": "world", "created_at": "..." } ] }
       _scope{ array! value, *args }
     else
@@ -172,7 +172,7 @@ class Jbuilder
   #
   # More commonly, you'd use the combined iterator, though:
   #
-  #   json.comments(@post.comments) do |comment|
+  #   json.comments(@post&.comments) do |comment|
   #     json.content comment.formatted_content
   #   end
   def child!

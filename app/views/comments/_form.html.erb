@@ -1,0 +1,6 @@
+<%= form_with model: [post, comment], local: true do |f| %>
+  <div class="form-control">
+    <%= f.text_field :body %>
+    <%= f.submit submit_label, class: "btn btn-primary mt-1" %>
+  </div>
+<% end %>

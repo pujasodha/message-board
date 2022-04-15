@@ -37,7 +37,7 @@ class JbuilderTemplate < Jbuilder
   #   json.partial! partial: 'posts/post', collection: @posts, as: :post
   #
   #   # or:
-  #   json.comments @post.comments, partial: 'comments/comment', as: :comment
+  #   json.comments @post&.comments, partial: 'comments/comment', as: :comment
   #
   # Aside from that, the `:cached` options is available on Rails >= 6.0. This will cache the rendered results
   # effectively using the multi fetch feature.
@@ -46,7 +46,7 @@ class JbuilderTemplate < Jbuilder
   #
   #   json.array! @posts, partial: "posts/post", as: :post, cached: true
   #
-  #   json.comments @post.comments, partial: "comments/comment", as: :comment, cached: true
+  #   json.comments @post&.comments, partial: "comments/comment", as: :comment, cached: true
   #
   def partial!(*args)
     if args.one? && _is_active_model?(args.first)

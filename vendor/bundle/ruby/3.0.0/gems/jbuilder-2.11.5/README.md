@@ -83,7 +83,7 @@ end
 Top level arrays can be handled directly.  Useful for index and other collection actions.
 
 ``` ruby
-# @comments = @post.comments
+# @comments = @post&.comments
 
 json.array! @comments do |comment|
   next if comment.marked_as_spam_by?(current_user)
@@ -204,7 +204,7 @@ json.partial! 'posts/post', collection: @posts, as: :post
 json.partial! partial: 'posts/post', collection: @posts, as: :post
 
 # or
-json.comments @post.comments, partial: 'comments/comment', as: :comment
+json.comments @post&.comments, partial: 'comments/comment', as: :comment
 ```
 
 The `as: :some_symbol` is used with partials. It will take care of mapping the passed in object to a variable for the
@@ -289,7 +289,7 @@ rendered results effectively using the multi fetch feature.
 json.array! @posts, partial: "posts/post", as: :post, cached: true
 
 # or:
-json.comments @post.comments, partial: "comments/comment", as: :comment, cached: true
+json.comments @post&.comments, partial: "comments/comment", as: :comment, cached: true
 ```
 
 If your collection cache depends on multiple sources (try to avoid this to keep things simple), you can name all these dependencies as part of a block that returns an array:

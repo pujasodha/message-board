@@ -55,7 +55,7 @@ class JbuilderDependencyTrackerTest < ActiveSupport::TestCase
 
     test 'detects partial in indirect collection calls' do
       dependencies = track_dependencies <<-RUBY
-        json.comments @post.comments, partial: 'comments/comment', as: :comment
+        json.comments @post&.comments, partial: 'comments/comment', as: :comment
       RUBY
 
       assert_equal %w[comments/comment], dependencies
