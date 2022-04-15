@@ -1,0 +1,9 @@
+<h1>Messages</h1>
+
+<% @posts.each do |post| %>
+  <h2> <%= link_to post.title, post_path(id: post.id) %> </h2>
+
+  <h4> <%= post.message %>
+<% end %>
+
+<%= link_to 'Add Message', new_post_path %>
