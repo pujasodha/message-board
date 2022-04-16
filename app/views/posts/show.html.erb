@@ -1,11 +1,14 @@
 <h1><%= @post.title %></h1>
 <h3><%= @post.user.name %></h3>
 <p><%= @post.message %></p>
-<%= link_to 'Back', posts_path %>
-<%= link_to 'Edit', edit_post_path %>
-<%= button_to "Delete", @post, method: :delete %>
-<br>
-<br>
+<%= link_to 'Back to Message Board', posts_path %>
+
+<% if current_user == @post.user %>
+  <%= link_to 'Edit', edit_post_path %>
+  <%= button_to "Delete", @post, method: :delete %>
+<% end %>
+
+
 <div class="container">
   <%= render 'comments/form', 
     post: @post, 

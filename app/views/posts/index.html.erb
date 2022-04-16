@@ -1,9 +1,26 @@
-<h1>Messages</h1>
+<div class="container flex justify-center max-w-7xl mx-auto ">
+  <div class="flex justify-center w-full p-4 px-3 py-10">
+    <div class="w-full max-w-md">
+      <div class="bg-white shadow-md rounded-lg px-3 py-2 mb-4">
+        <div class="block text-gray-700 text-lg font-semibold py-2 px-2">
+          Welcome to Your Message Board
+        </div>
 
-<% @posts.each do |post| %>
-  <h2> <%= link_to post.title, post_path(id: post.id) %> </h2>
+        <div class="py-3 text-sm">
+          <% @posts.each do |post| %>
+           <div class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+           <span class="bg-green-400 h-2 w-2 m-2 rounded-full"></span>
+              <%= link_to post.title, post_path(id: post.id), class: "flex-grow font-medium px-2" %>
+              
+              <%= content_tag(:div, post.user.name, class: "text-sm font-normal text-gray-500 tracking-wide") %>
+            </div>
+          <% end %>
+        </div>
 
-  <h4> <%= post.message %>
-<% end %>
-
-<%= link_to 'Add Message', new_post_path %>
+        <div class="block bg-gray-200 text-sm text-right py-4 px-5 -mx-3 -mb-2 rounded-b-lg">
+          <%= link_to 'Add Message', new_post_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
