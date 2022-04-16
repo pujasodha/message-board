@@ -1,15 +1,23 @@
-<%# UNICORN - TODO switch to content tags %>
-<div class="comment-<%= comment.id %> container" >
-  <%= comment.user.name %><br />
+<div class="w-full pb-5">
+  <div class="flex justify-between items-center">
+    <span class="text-left font-light text-gray-600">
+      Posted <%= time_ago_in_words(comment.created_at) %> ago
+    </span>
+    <span class="font-light text-gray-600 px-4">
+      Commented By <%= comment.user.name %><br />
+    </span>
+  </div>
 
-  <p>Posted <%= time_ago_in_words(comment.created_at) %> ago</p>
 
-  <% if current_user == comment.user %>
-      <%= button_to "Delete", [post, comment], method: :delete %>
+  <div class="mt-2 text-gray-600 py-2 px-4">
+    <div id="comment-body">
+      <%= comment.body %>
     </div>
-  <% end %>
+  </div>
 
-  <div id="comment-body-<%= comment.id %>">
-    <%= comment.body %>
+  <div class="flex justify-end mt-4">
+  <% if current_user == comment.user %>
+    <%= button_to "Delete", [post, comment], method: :delete, class: "flex mr-2 text-gray-700 text-sm mr-3 text-blue-600 hover:underline" %>
+  <% end %>
   </div>
 </div>

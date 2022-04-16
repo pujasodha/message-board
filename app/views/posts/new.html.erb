@@ -1,5 +1,13 @@
-<div class="container">
-  <%= render "form", post: @post %>
+<%= link_to 'Back to Message Board', posts_path %>
+<div class="container flex justify-center max-w-7xl mx-auto ">
+  <div class="flex justify-center w-full p-4 px-3 py-10">
+    <div class="w-full">
+      <div class="bg-white shadow-md rounded-lg px-3 py-2 mb-4">
+        <div class="heading text-center block text-gray-700 text-2xl font-semibold py-2 px-2">New Message</div>
 
-  <%= link_to "Back to posts", posts_path %>
+          <%= render "form", post: @post %>
+
+      </div>
+    </div>
+  </div>
 </div>

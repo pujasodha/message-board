@@ -1,6 +1,12 @@
-<%= form_with model: [post, comment], local: true do |f| %>
-  <div class="form-control">
-    <%= f.text_field :body %>
-    <%= f.submit submit_label, class: "btn btn-primary mt-1" %>
+
+
+<%= form_with model: [post, comment], class: 'w-full max-w-xl bg-white rounded-lg px-4 pt-2', local: true do |f| %>
+  <div class="form-control flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-full px-3">
+      <%= f.text_field :body, class: 'bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 placeholder-gray-700 focus:outline-none focus:bg-white' %>
+      <div class="text-sm text-right rounded-b-lg py-2 ">
+        <%= f.submit submit_label, class: "bg-blue-500 hover:bg-blue-700 text-white py-2 px-6 rounded" %>
+      </div>
+    </div>
   </div>
 <% end %>
