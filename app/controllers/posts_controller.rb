@@ -2,11 +2,13 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = all_posts.paginate(page: params[:page], per_page: 5)
+    @posts = all_posts&.paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    @comments = @post&.comments&.includes(:user)&.order(created_at: :desc)
+    comments = @post&.comments.includes(:user).order(created_at: :desc)
+
+    @comments = comments.paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -18,15 +20,13 @@ class PostsController < ApplicationController
     @post.user = current_user
     @post.save
 
-    create_post = @post.save
-    response_for(@post, create_post, :new, 'created')
+    response_for(@post, :new, 'created')
   end
 
   def edit; end
 
   def update
-    update_post = @post.update(post_params)
-    response_for(@post, update_post, :edit, 'updated')
+    response_for(@post, :edit, 'updated')
   end
 
   def destroy
@@ -47,8 +47,10 @@ class PostsController < ApplicationController
     @post = all_posts.find_by(id: params[:id])
   end
 
-  def response_for(post, method_succesful, action, affect)
+  def response_for(post, action, affect)
     respond_to do |format|
+      method_succesful = affect == 'created' ? post.save : post.update(post_params)
+
       if method_succesful
         format.html { redirect_to post_url(post), notice: "Message successfully #{affect}" }
         format.json { render :show, status: :ok, location: post }

@@ -5,20 +5,17 @@ class CommentsController < ApplicationController
     @comment = @post.comments.create(comment_params)
     @comment.user = current_user
 
-    if @comment.save
-      redirect_to post_path(@post), notice: 'Comment has been created'
-    else
-      redirect_to post_path(@post), alert: 'Comment has not been created'
-    end
+    response_for(@comment, 'created')
   end
 
   def destroy
     @comment.destroy
-    redirect_to post_path(@post)
+
+    redirect_to post_url(@post)
   end
 
   def update
-    response_for(@comment, 'update')
+    response_for(@comment, 'updated')
   end
 
   private
@@ -33,15 +30,17 @@ class CommentsController < ApplicationController
 
   def response_for(comment, action)
     respond_to do |format|
-      if comment.update(comment_params)
+      method_succesful = action == 'created' ? comment.save : comment.update(comment_params)
+
+      if method_succesful
         format.html { redirect_to post_url(@post), notice: "Comment #{action}" }
       else
-        format.html { redirect_to post_url(@post), alert: "Comment was not  #{action}" }
+        format.html { redirect_to post_url(@post), alert: "Comment was not #{action}" }
       end
     end
   end
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comments).permit(:body)
   end
 end

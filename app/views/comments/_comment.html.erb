@@ -1,15 +1,14 @@
-<div class="w-full pb-5">
+<div class="w-full pb-5 shadow-sm space-y-5 py-5 px-2">
   <div class="flex justify-between items-center">
+    <span class="font-light text-gray-600 px-4">
+      <%= comment.user.name %><br />
+    </span>
     <span class="text-left font-light text-gray-600">
       Posted <%= time_ago_in_words(comment.created_at) %> ago
     </span>
-    <span class="font-light text-gray-600 px-4">
-      Commented By <%= comment.user.name %><br />
-    </span>
   </div>
 
-
-  <div class="mt-2 text-gray-600 py-2 px-4">
+  <div class="mt-2 text-gray-600  px-4">
     <div id="comment-body">
       <%= comment.body %>
     </div>
