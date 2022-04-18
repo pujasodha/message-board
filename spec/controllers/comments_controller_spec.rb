@@ -34,7 +34,7 @@ describe CommentsController, type: :controller do
       it 'creates the comment' do
         post :create, params: {
           post_id: posts.last.id,
-          comments: {
+          comment: {
             body: 'message'
           }
         }
@@ -52,7 +52,7 @@ describe CommentsController, type: :controller do
       it 'does not create the comment' do
         post :create, params: {
           post_id: posts.last.id,
-          comments: {
+          comment: {
             body: nil
           }
         }
@@ -73,7 +73,7 @@ describe CommentsController, type: :controller do
         patch :update, params: {
           post_id: posts.last.id,
           id: comments.last.id,
-          comments: {
+          comment: {
             body: 'message'
           }
         }
@@ -92,7 +92,7 @@ describe CommentsController, type: :controller do
         patch :update, params: {
           post_id: posts.last.id,
           id: comments.last.id,
-          comments: {
+          comment: {
             body: nil
           }
         }
@@ -104,7 +104,7 @@ describe CommentsController, type: :controller do
   end
 
   describe '#destroy' do
-    context 'valid comments' do
+    context 'valid comment' do
       before do
         controller.instance_variable_set(:@post, posts.last)
       end
@@ -113,7 +113,7 @@ describe CommentsController, type: :controller do
         delete :destroy, params: {
           post_id: posts.last.id,
           id: comments.last.id,
-          comments: {
+          comment: {
             body: 'body comment'
           }
         }
