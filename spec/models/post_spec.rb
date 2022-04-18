@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe Post, type: :model do
   let(:user) { FactoryBot.create(:user) }
-  let(:post) { FactoryBot.create(:post, user: user, created_at: Time.now) }
+  let(:time) { Time.now }
+  let(:post) { FactoryBot.create(:post, user: user) }
 
   describe 'validations' do
     it { should validate_presence_of(:title) }
@@ -26,8 +27,12 @@ describe Post, type: :model do
   end
 
   describe '#time_created' do
+    before do
+      allow(Time).to receive(:now).and_return(time)
+      post.created_at = time
+    end
     it 'converts time for readability' do
-      expect(post.time_created).to eq(Time.now.strftime('%B %d, %Y'))
+      expect(post.time_created).to eq(time.strftime('%B %d, %Y'))
     end
   end
 end
